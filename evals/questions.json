@@ -1,0 +1,289 @@
+[
+ {
+  "q": "What is three address code?",
+  "answer": "An intermediate representation where each instruction typically has one operator and at most three operands.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "What are the three ways of representing three address code?",
+  "answer": "Quadruples, triples and indirect triples.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "What are the four fields of a quadruple?",
+  "answer": "op, arg1, arg2 and result.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "How do triples avoid using extra temporary variables?",
+  "answer": "They use a pointer or reference to another triple instead of a temporary variable.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "For the expression a+a*(b-c)+(b-c)*d, what is the final three address instruction?",
+  "answer": "t5 = t3 + t4",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 5,
+  "answerable": true
+ },
+ {
+  "q": "Which code generator issue is about choosing the most suitable machine instructions?",
+  "answer": "Instruction selection.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 10,
+  "answerable": true
+ },
+ {
+  "q": "What are the two stages of register handling in a code generator?",
+  "answer": "Register allocation and register assignment.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 12,
+  "answerable": true
+ },
+ {
+  "q": "Which peephole optimization removes the second of 'mov R0, a' followed by 'mov a, R0'?",
+  "answer": "Redundant instruction elimination.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 13,
+  "answerable": true
+ },
+ {
+  "q": "Give the strength reduction example for multiplying by 2.",
+  "answer": "x * 2 can be replaced with x << 1.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 16,
+  "answerable": true
+ },
+ {
+  "q": "Which instructions are leaders when building basic blocks?",
+  "answer": "The first instruction, any target of a jump or goto, and any instruction that immediately follows a jump or goto.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 18,
+  "answerable": true
+ },
+ {
+  "q": "What are the three storage allocation strategies a compiler uses?",
+  "answer": "Static, stack and heap allocation.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 20,
+  "answerable": true
+ },
+ {
+  "q": "In what order is stack memory allocated and freed?",
+  "answer": "LIFO: allocated when a function is called and deallocated when it returns.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 22,
+  "answerable": true
+ },
+ {
+  "q": "What are the disadvantages of heap allocation?",
+  "answer": "It is slower than the stack and there is a chance of memory leaks.",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": 24,
+  "answerable": true
+ },
+ {
+  "q": "What does the document say about the time complexity of graph-colouring register allocation?",
+  "answer": "not in document",
+  "source": "New_Doc_10-14-2025_14_57.pdf",
+  "page": null,
+  "answerable": false
+ },
+ {
+  "q": "What is the title of the mini project and who submitted it?",
+  "answer": "Web-Based Smart Attendance Calculator, submitted by K. Aanuj Reddy (22R91A05C7).",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": "cover",
+  "answerable": true
+ },
+ {
+  "q": "Who is the project guide of the mini project?",
+  "answer": "P. Ratna Tejaswi, Assistant Professor, Department of CSE.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": "cover",
+  "answerable": true
+ },
+ {
+  "q": "What inputs does the attendance calculator take from the user?",
+  "answer": "Total classes, attended classes, target attendance percentage and the number of working days left before exams.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": "abstract",
+  "answerable": true
+ },
+ {
+  "q": "Which backend framework and database does the attendance system use?",
+  "answer": "Node.js with Express.js for the backend and SQLite for the database.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 3,
+  "answerable": true
+ },
+ {
+  "q": "What architecture does the attendance system follow?",
+  "answer": "A three-tier architecture: presentation tier, application tier (server) and data tier (database).",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 7,
+  "answerable": true
+ },
+ {
+  "q": "What information does the SQLite database store for each student?",
+  "answer": "Student ID, name, classes attended and total classes.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 15,
+  "answerable": true
+ },
+ {
+  "q": "How does the admin mark attendance and what gets updated when it is saved?",
+  "answer": "By ticking checkboxes next to each student; saving updates classes_attended and total_classes in the database.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 17,
+  "answerable": true
+ },
+ {
+  "q": "What are the disadvantages of the existing attendance system?",
+  "answer": "Human errors, manual effort and limited scenario analysis.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 4,
+  "answerable": true
+ },
+ {
+  "q": "Which UML diagrams are included in the mini project report?",
+  "answer": "Class diagram, use case diagram, activity diagram and sequence diagram.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": "9-12",
+  "answerable": true
+ },
+ {
+  "q": "On which operating system was the system developed and tested?",
+  "answer": "Windows 11.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 16,
+  "answerable": true
+ },
+ {
+  "q": "For Student 1 (298 total, 202 attended, 10 days left, target 75%), what maximum attendance can be reached?",
+  "answer": "73.18%, so 75% is impossible.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 32,
+  "answerable": true,
+  "note": "answer is inside a screenshot (vision path)"
+ },
+ {
+  "q": "For Student 2 (298 total, 232 attended, target 75%), how many more classes can be missed?",
+  "answer": "11 more classes while still maintaining 75.00% attendance.",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "printed_page": 33,
+  "answerable": true,
+  "note": "answer is inside a screenshot (vision path)"
+ },
+ {
+  "q": "How many users took part in a pilot test of the attendance calculator?",
+  "answer": "not in document",
+  "source": "MINI_doc_aanuj.pdf",
+  "page": null,
+  "answerable": false
+ },
+ {
+  "q": "Who are the authors of the FinShield paper and in which journal was it published?",
+  "answer": "P Ratna Tejaswi, K Aanuj Reddy, G Eesha and J Nagalaxmi; Global Journal of Engineering Innovations & Interdisciplinary Research (GJEIIR).",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "What were the received, accepted and publication dates of the FinShield paper?",
+  "answer": "Received 08 Jan 2026, accepted 20 Jan 2026, published 09 Feb 2026.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "What detection accuracy did FinShield achieve?",
+  "answer": "95%.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "What size dataset was FinShield evaluated on?",
+  "answer": "A simulated dataset of 50,000 transactions and 5,000 users, with 8% labeled laundering cases.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "Which network metrics are extracted from the user-transaction graph?",
+  "answer": "Degree centrality, clustering coefficient, PageRank and transaction velocity.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "What does the detection engine output and when is an alert triggered?",
+  "answer": "A risk score per user and transaction; an alert is triggered when the score exceeds a predefined threshold.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "What are the F1-scores of Random Forest and the GNN (FinShield)?",
+  "answer": "Random Forest 0.86 and GNN (FinShield) 0.92.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "At a risk threshold of 0.6, what are the false positive rate and detection rate?",
+  "answer": "False positive rate 0.12 and detection rate 0.91.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "What happens to false positives as the risk threshold increases?",
+  "answer": "False positives decrease (from 0.25 at 0.2 to 0.05 at 1.0), while the detection rate also falls.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 2,
+  "answerable": true
+ },
+ {
+  "q": "What limitation is listed for Kipf & Welling's Graph Convolutional Networks?",
+  "answer": "Requires structured graph input.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 1,
+  "answerable": true
+ },
+ {
+  "q": "What future enhancements does the FinShield paper propose?",
+  "answer": "Real-time streaming analysis, federated learning for privacy-preserving AML, and integration with blockchain-based financial platforms.",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": 3,
+  "answerable": true
+ },
+ {
+  "q": "How many GPUs were used to train the FinShield GNN?",
+  "answer": "not in document",
+  "source": "Major_pro_Arcticle.pdf",
+  "page": null,
+  "answerable": false
+ }
+]

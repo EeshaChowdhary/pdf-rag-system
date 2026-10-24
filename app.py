@@ -3,9 +3,19 @@ import os
 from dotenv import load_dotenv
 from utils import (
     extract_text_from_pdf, convert_pdf_to_images, is_scanned_pdf,
-    get_file_info, chunk_text, embed_chunks
+    get_file_info, embed_chunks
 )
-from ai_engine import ask_question_vision, ask_question_text, generate_summary_vision, generate_summary_text
+from ai_engine import generate_summary_vision, generate_summary_text, spread_page_images
+from pdf_rag import (
+    AGENT,
+    PDF_ONLY,
+    PDF_WEB,
+    answer_from_index,
+    chunks_from_pages,
+    merge_transcripts,
+    sparse_page_numbers,
+)
+from web_search import search_status
 
 load_dotenv()
 
@@ -114,12 +124,32 @@ if "total_pages"      not in st.session_state: st.session_state.total_pages     
 if "summary"          not in st.session_state: st.session_state.summary          = None
 if "active_tab"       not in st.session_state: st.session_state.active_tab       = "chat"
 if "chunks"           not in st.session_state: st.session_state.chunks           = []
+if "chunk_rows"       not in st.session_state: st.session_state.chunk_rows       = []
 if "chunk_embeddings" not in st.session_state: st.session_state.chunk_embeddings = None
+if "source_mode"      not in st.session_state: st.session_state.source_mode      = PDF_ONLY
+if "transcripts"      not in st.session_state: st.session_state.transcripts      = {}
 
 # ── SIDEBAR ──────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## ≋ PDF Reader AI")
     st.markdown("*Reads handwriting, diagrams & formulas*")
+    st.divider()
+    mode_label = st.radio(
+        "Source mode",
+        ["PDF only", "PDF + web", "Agentic"],
+        help="PDF only never calls web search. The other modes search only when PDF evidence is weak.",
+    )
+    st.session_state.source_mode = {
+        "PDF only": PDF_ONLY,
+        "PDF + web": PDF_WEB,
+        "Agentic": AGENT,
+    }[mode_label]
+    web_state = search_status()
+    if web_state["available"]:
+        st.caption(f"Web search: {web_state['provider']} configured")
+    else:
+        st.caption("Web search: not configured. PDF-only answers still work.")
+
     st.divider()
 
     # Upload
@@ -142,14 +172,9 @@ with st.sidebar:
                 # Convert to images for vision
                 page_images = convert_pdf_to_images(uploaded_file)
 
-                # Build the retrieval index once per document, not per question
-                chunks = []
-                if not scanned:
-                    full_context = ""
-                    for page_num, text in text_by_page.items():
-                        if text.strip():
-                            full_context += f"\n--- Page {page_num} ---\n{text}"
-                    chunks = chunk_text(full_context, chunk_size=600)
+                # Page-level chunks so citations stay on the page that contained the text.
+                chunk_rows = [] if scanned else chunks_from_pages(text_by_page, uploaded_file.name)
+                chunks = [row["text"] for row in chunk_rows]
 
                 # Save to session
                 st.session_state.text_by_page = text_by_page
@@ -160,10 +185,12 @@ with st.sidebar:
                 st.session_state.chat_history = []
                 st.session_state.summary      = None
                 st.session_state.chunks       = chunks
+                st.session_state.chunk_rows   = chunk_rows
+                st.session_state.transcripts  = {}
 
-            if chunks:
+            if st.session_state.chunk_rows:
                 with st.spinner("Indexing document for retrieval..."):
-                    st.session_state.chunk_embeddings = embed_chunks(chunks)
+                    st.session_state.chunk_embeddings = embed_chunks(st.session_state.chunks)
             else:
                 st.session_state.chunk_embeddings = None
 
@@ -191,7 +218,9 @@ with st.sidebar:
             st.session_state.total_pages      = 0
             st.session_state.summary          = None
             st.session_state.chunks           = []
+            st.session_state.chunk_rows       = []
             st.session_state.chunk_embeddings = None
+            st.session_state.transcripts      = {}
             st.rerun()
 
     st.divider()
@@ -301,20 +330,50 @@ else:
         if ask_btn and user_input.strip():
             with st.spinner("Reading your PDF..."):
                 try:
-                    if st.session_state.is_scanned or st.session_state.page_images:
-                        answer = ask_question_vision(
-                            user_input,
-                            st.session_state.page_images,
-                            st.session_state.chat_history
-                        )
-                    else:
-                        answer = ask_question_text(
-                            user_input,
+                    if st.session_state.is_scanned:
+                        text_by_page, transcripts = merge_transcripts(
                             st.session_state.text_by_page,
-                            st.session_state.chat_history,
-                            chunks=st.session_state.chunks,
-                            chunk_embeddings=st.session_state.chunk_embeddings
+                            st.session_state.page_images,
+                            [image["page_num"] for image in st.session_state.page_images],
+                            st.session_state.transcripts,
                         )
+                        st.session_state.transcripts = transcripts
+                        st.session_state.text_by_page = text_by_page
+                        st.session_state.chunk_rows = chunks_from_pages(
+                            text_by_page, st.session_state.doc_name
+                        )
+                        st.session_state.chunks = [row["text"] for row in st.session_state.chunk_rows]
+                        st.session_state.chunk_embeddings = embed_chunks(st.session_state.chunks)
+                    elif sparse_page_numbers(st.session_state.text_by_page):
+                        missing = [
+                            page for page in sparse_page_numbers(st.session_state.text_by_page)
+                            if page not in st.session_state.transcripts
+                        ]
+                        if missing:
+                            text_by_page, transcripts = merge_transcripts(
+                                st.session_state.text_by_page,
+                                st.session_state.page_images,
+                                missing,
+                                st.session_state.transcripts,
+                            )
+                            st.session_state.transcripts = transcripts
+                            st.session_state.text_by_page = text_by_page
+                            st.session_state.chunk_rows = chunks_from_pages(
+                                text_by_page, st.session_state.doc_name
+                            )
+                            st.session_state.chunks = [row["text"] for row in st.session_state.chunk_rows]
+                            st.session_state.chunk_embeddings = embed_chunks(st.session_state.chunks)
+
+                    result = answer_from_index(
+                        user_input,
+                        st.session_state.chunk_rows,
+                        st.session_state.chunk_embeddings,
+                        st.session_state.page_images,
+                        st.session_state.is_scanned,
+                        st.session_state.source_mode,
+                        history=st.session_state.chat_history,
+                    )
+                    answer = result["answer"]
 
                     st.session_state.chat_history.append({"role":"user",    "content": user_input})
                     st.session_state.chat_history.append({"role":"assistant","content": answer})
@@ -360,8 +419,12 @@ else:
             if st.button("✦ Generate Summary", use_container_width=True):
                 with st.spinner("Reading and summarizing..."):
                     try:
-                        if st.session_state.is_scanned or st.session_state.page_images:
-                            summary = generate_summary_vision(st.session_state.page_images)
+                        if st.session_state.is_scanned:
+                            spread = [image["page_num"] for image in spread_page_images(st.session_state.page_images)]
+                            summary = generate_summary_vision(
+                                st.session_state.page_images,
+                                pages_to_send=spread,
+                            )
                         else:
                             summary = generate_summary_text(st.session_state.text_by_page)
                         st.session_state.summary = summary

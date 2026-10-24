@@ -1,0 +1,212 @@
+[
+  {
+    "q": "What is three address code?",
+    "answer": "An intermediate representation where each instruction typically has one operator and at most three operands.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 1,
+    "answerable": true,
+    "question_number": 1,
+    "secs": 8.39,
+    "answer_given": "According to the provided document, three address code (TAC) is an intermediate representation where each instruction typically contains one operator and at most three operands (Page 1).\nSources:\nPDF pages: page 1, page 6, page 11, page 4, page 3\nExternal sources: none",
+    "retrieved_pages": [
+      1,
+      6,
+      11,
+      4,
+      3
+    ],
+    "abstained": false,
+    "web_available": false,
+    "web_results": 0,
+    "notes": [],
+    "answer_usage": {
+      "prompt_tokens": 5632,
+      "output_tokens": 33,
+      "total_tokens": 5665
+    },
+    "hit": true,
+    "correct": true,
+    "grounded": true,
+    "reason": "The model answer accurately defines three address code using the exact phrasing provided in the retrieved context on page 1.",
+    "judge_usage": {
+      "prompt_tokens": 892,
+      "output_tokens": 46,
+      "total_tokens": 938
+    }
+  },
+  {
+    "q": "What are the four fields of a quadruple?",
+    "answer": "op, arg1, arg2 and result.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 1,
+    "answerable": true,
+    "question_number": 3,
+    "secs": 14.65,
+    "answer_given": "Based on the provided documents, a quadruple consists of the following four fields:\n\n*   **op** (Page 3)\n*   **arg1** (Page 3)\n*   **arg2** (Page 3)\n*   **result** (Page 3)\nSources:\nPDF pages: page 5, page 3, page 4, page 6, page 2\nExternal sources: none",
+    "retrieved_pages": [
+      5,
+      3,
+      4,
+      6,
+      2
+    ],
+    "abstained": false,
+    "web_available": false,
+    "web_results": 0,
+    "notes": [],
+    "answer_usage": {
+      "prompt_tokens": 5634,
+      "output_tokens": 61,
+      "total_tokens": 5695
+    },
+    "hit": false,
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the four fields of a quadruple as op, arg1, arg2, and result, which is supported by the tables and descriptions provided in the retrieved context on pages 2, 3, and 5.",
+    "judge_usage": {
+      "prompt_tokens": 962,
+      "output_tokens": 71,
+      "total_tokens": 1033
+    }
+  },
+  {
+    "q": "What does the document say about the time complexity of graph-colouring register allocation?",
+    "answer": "not in document",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": null,
+    "answerable": false,
+    "question_number": 14,
+    "secs": 3.16,
+    "answer_given": "The provided documents do not contain information regarding the time complexity of graph-coloring register allocation.\nSources:\nPDF pages: page 11, page 12, page 3, page 20, page 15\nExternal sources: none",
+    "retrieved_pages": [
+      11,
+      12,
+      3,
+      20,
+      15
+    ],
+    "abstained": true,
+    "web_available": false,
+    "web_results": 0,
+    "notes": [],
+    "answer_usage": {
+      "prompt_tokens": 5646,
+      "output_tokens": 18,
+      "total_tokens": 5664
+    },
+    "hit": null,
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified that the provided documents do not contain information about the time complexity of graph-coloring register allocation.",
+    "judge_usage": {
+      "prompt_tokens": 824,
+      "output_tokens": 48,
+      "total_tokens": 872
+    }
+  },
+  {
+    "q": "For Student 1 (298 total, 202 attended, 10 days left, target 75%), what maximum attendance can be reached?",
+    "answer": "73.18%, so 75% is impossible.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 32,
+    "answerable": true,
+    "note": "answer is inside a screenshot (vision path)",
+    "question_number": 25,
+    "secs": 8.18,
+    "answer_given": "Based on the provided PDF, for Student 1 (ID: S001) with 298 total classes, 202 attended classes, 10 days left, and a target attendance of 75.00%, it is impossible to reach the target. The maximum attendance that can be reached is 73.18% (Page 40).\nSources:\nPDF pages: page 40, page 39, page 41, page 38, page 27\nExternal sources: none",
+    "retrieved_pages": [
+      40,
+      39,
+      41,
+      38,
+      27
+    ],
+    "abstained": false,
+    "web_available": false,
+    "web_results": 0,
+    "notes": [],
+    "answer_usage": {
+      "prompt_tokens": 1436,
+      "output_tokens": 80,
+      "total_tokens": 1516
+    },
+    "hit": null,
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that the target is impossible and provides the exact maximum attendance percentage (73.18%) found on page 40 of the provided context.",
+    "judge_usage": {
+      "prompt_tokens": 1548,
+      "output_tokens": 58,
+      "total_tokens": 1606
+    }
+  },
+  {
+    "q": "What detection accuracy did FinShield achieve?",
+    "answer": "95%.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 1,
+    "answerable": true,
+    "question_number": 30,
+    "secs": 3.28,
+    "answer_given": "FinShield achieved a detection accuracy of 95% (Page 3).\nSources:\nPDF pages: page 3, page 2, page 1, page 4\nExternal sources: none",
+    "retrieved_pages": [
+      3,
+      2,
+      1,
+      4
+    ],
+    "abstained": false,
+    "web_available": false,
+    "web_results": 0,
+    "notes": [],
+    "answer_usage": {
+      "prompt_tokens": 3485,
+      "output_tokens": 16,
+      "total_tokens": 3501
+    },
+    "hit": true,
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the 95% detection accuracy, which is explicitly stated in the provided context on pages 1, 2, and 3.",
+    "judge_usage": {
+      "prompt_tokens": 3513,
+      "output_tokens": 56,
+      "total_tokens": 3569
+    }
+  },
+  {
+    "q": "How many GPUs were used to train the FinShield GNN?",
+    "answer": "not in document",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": null,
+    "answerable": false,
+    "question_number": 39,
+    "secs": 2.79,
+    "answer_given": "The provided document does not contain information regarding the number of GPUs used to train the FinShield GNN.\nSources:\nPDF pages: page 2, page 3, page 1, page 4\nExternal sources: none",
+    "retrieved_pages": [
+      2,
+      3,
+      1,
+      4
+    ],
+    "abstained": true,
+    "web_available": false,
+    "web_results": 0,
+    "notes": [],
+    "answer_usage": {
+      "prompt_tokens": 3490,
+      "output_tokens": 21,
+      "total_tokens": 3511
+    },
+    "hit": null,
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that the document does not contain information about the number of GPUs used to train the FinShield GNN.",
+    "judge_usage": {
+      "prompt_tokens": 3522,
+      "output_tokens": 49,
+      "total_tokens": 3571
+    }
+  }
+]

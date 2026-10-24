@@ -79,13 +79,15 @@ def embed_chunks(chunks):
     return np.array(list(embedder.embed(chunks)))
 
 
-def retrieve_relevant_chunks(query, chunks, chunk_embeddings, top_k=5):
-    """Return the top_k chunks most semantically similar to the query,
-    ranked by cosine similarity — this is the actual 'R' in RAG."""
+def retrieve_with_scores(query, chunks, chunk_embeddings, top_k=5):
+    """Return (chunk, cosine score) pairs, highest score first.
+
+    A missing embedding index preserves document order and uses a null score.
+    """
     if not chunks:
         return []
     if chunk_embeddings is None or len(chunk_embeddings) == 0:
-        return chunks[:top_k]
+        return [(chunks[i], None) for i in range(min(top_k, len(chunks)))]
 
     embedder = get_embedder()
     query_vec = np.array(list(embedder.embed([query])))[0]
@@ -95,7 +97,15 @@ def retrieve_relevant_chunks(query, chunks, chunk_embeddings, top_k=5):
     scores = (chunk_embeddings @ query_vec) / denom
 
     top_indices = np.argsort(scores)[::-1][:top_k]
-    return [chunks[i] for i in top_indices]
+    return [(chunks[i], float(scores[i])) for i in top_indices]
+
+
+def retrieve_relevant_chunks(query, chunks, chunk_embeddings, top_k=5):
+    """Return the top_k chunks most semantically similar to the query,
+    ranked by cosine similarity — this is the actual 'R' in RAG."""
+    return [text for text, _score in retrieve_with_scores(
+        query, chunks, chunk_embeddings, top_k=top_k
+    )]
 
 
 def get_file_info(uploaded_file):

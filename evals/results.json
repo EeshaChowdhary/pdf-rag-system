@@ -1,0 +1,1108 @@
+[
+  {
+    "q": "What is three address code?",
+    "answer": "An intermediate representation where each instruction typically has one operator and at most three operands.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 5.12,
+    "hit": true,
+    "answer_given": "Based on the handwritten notes provided, here is an explanation of **Three-Address Code (TAC)**.\n\n### What is Three-Address Code?\nAs mentioned on **Page 1**, Three-Address Code is a form of **intermediate representation** used in compiler design.\n\nKey characteristics include:\n*   Each instruction typically contains **one operator** and **at most three operands** (e.g., $result = arg1\\ operator\\ arg2$).\n*   It is considered a \"generic form\" of code.\n*   Instructions are kept very simple.\n\n### How to Implement Three-Address Code\nThe notes outline the following rules for writing TAC:\n1.  **Simplicity:** Keep each instruction as simple as possible.\n2.  **Structure:** The Left-Hand Side (LHS) represents the target value, while the Right-Hand Side (RHS) contains at most two sources (operands).\n3.  **Contents:** The RHS can consist of constants or variables.\n\n---\n\n### Examples of TAC\nOn **Page 3**, the notes provide a practical example for the expression: **$a + b * c - d / (b + c)$**\n\nTo convert this into TAC, the compiler breaks it down into individual, simple steps using temporary variables ($t_1, t_2, \\dots$):\n1.  $t_1 = b + c$\n2.  $t_2 = a + b$\n3.  $t_3 = c - d$\n4.  $t_4 = t_2 * t_3$\n5.  $t_5 = t_4 / t_1$\n\n---\n\n### Types of Three-Address Code\nThe notes categorize TAC representations into three main types based on how they store and reference data:\n\n1.  **Quadruples (Page 1 & 3):** A structure with four fields: `op` (operator), `arg1`, `arg2`, and `result`. The table on **Page 3** shows how the expression above is stored in a quadruple format using these four columns.\n2.  **Triples (Page 4 & 6):** These use three fields: `operator`, `arg1`, and `arg2`. Instead of using temporary variable names (like $t_1$), triples typically refer to the position (or index) of a previous calculation to represent the result.\n3.  **Indirect Triples (Page 4 & 6):** This approach uses a separate table to list pointers to the triples, which allows for easier code rearrangement compared to standard triples.\n\nIf you are studying for an exam, pay close attention to the **Quadruple** table on **Page 3**, as it clearly shows how the compiler maps an algebraic expression into a machine-readable table!",
+    "retrieved_pages": [
+      1,
+      6,
+      11,
+      4,
+      3
+    ],
+    "pages_sent": [
+      1,
+      6,
+      11,
+      4,
+      3
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly defines Three-Address Code as an intermediate representation with one operator and at most three operands, which matches the provided context. It also accurately describes the types (quadruples, triples, indirect triples) and implementation rules found in the source material."
+  },
+  {
+    "q": "What are the three ways of representing three address code?",
+    "answer": "Quadruples, triples and indirect triples.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 8.28,
+    "hit": true,
+    "answer_given": "Based on the provided notes (specifically pages 1, 2, and 3), there are three primary ways to represent **Three Address Code (TAC)**. \n\nHere is the breakdown of each:\n\n### 1. Quadruples\nAs noted on page 1, a quadruple is a structure consisting of **four fields**:\n*   **op**: The operator.\n*   **arg1**: The first operand.\n*   **arg2**: The second operand.\n*   **result**: The place where the result of the expression is stored.\n\n**Example (from page 3):** For the expression $a + b * c - d / (b + c)$, the quadruples table breaks down each operation into these four specific fields.\n\n### 2. Triples\nAs explained on page 2, this representation does not use an extra temporary variable to store the result of an operation. Instead, when a result is needed by a later instruction, it uses a **pointer** to the specific triple that calculated that value.\n*   It consists of only **three fields**: `op`, `arg1`, and `arg2`.\n\n### 3. Indirect Triples\nAlso described on page 2, this representation makes use of a pointer to a separate list of references to computations. \n*   **How it works:** Instead of listing the triples directly, all references to computations are stored in a separate table.\n*   **Comparison:** The notes mention that it is similar in utility to the quadruple representation, but it requires less space and makes it easier to rearrange code.\n\n***\n\n**Quick Summary for your assignment:**\n*   **Quadruples:** Uses 4 fields (Explicitly stores the result variable).\n*   **Triples:** Uses 3 fields (Uses pointers to previous results instead of temporary variables).\n*   **Indirect Triples:** Uses a separate list of pointers to improve memory efficiency and code flexibility.\n\nI hope this helps you with your assignment! Let me know if you need help understanding the example table on page 3 or any other part of your notes.",
+    "retrieved_pages": [
+      1,
+      8,
+      2,
+      3,
+      11
+    ],
+    "pages_sent": [
+      1,
+      8,
+      2,
+      3,
+      11
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the three ways of representing three address code (quadruples, triples, and indirect triples) as requested, and all information provided is supported by the retrieved context."
+  },
+  {
+    "q": "What are the four fields of a quadruple?",
+    "answer": "op, arg1, arg2 and result.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 13.22,
+    "hit": false,
+    "answer_given": "Based on the notes provided, specifically on **page 3**, a **quadruple** is a representation used to break down expressions into a series of simple instructions.\n\nIt consists of these **four fields**:\n\n1.  **`op`**: This field stores the operator (such as `+`, `-`, `*`, `/`).\n2.  **`arg1`**: This is the first operand (the first input value for the operation).\n3.  **`arg2`**: This is the second operand (the second input value for the operation).\n4.  **`result`**: This field stores the temporary variable or the outcome of that specific operation.\n\nYou can see this clearly in the table on **page 3**, where each row represents a step in the calculation for the expression `a + b * c - d / (b + c)`, with these four columns defining the structure of each quadruple.",
+    "retrieved_pages": [
+      5,
+      3,
+      4,
+      6,
+      2
+    ],
+    "pages_sent": [
+      5,
+      3,
+      4,
+      6,
+      2
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the four fields as op, arg1, arg2, and result, which is supported by the provided context on pages 2, 3, and 5."
+  },
+  {
+    "q": "How do triples avoid using extra temporary variables?",
+    "answer": "They use a pointer or reference to another triple instead of a temporary variable.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 8.46,
+    "hit": true,
+    "answer_given": "To understand how **Triples** avoid extra temporary variables, let’s look at your notes starting on **Page 2**.\n\n### The Core Concept\nIn **Quadruples** (which you see in the table on Page 3), the compiler typically creates a specific temporary variable (like $t_1, t_2, t_3$) to store the result of every single operation.\n\n**Triples** change this approach by removing that explicit \"result\" column. Instead of storing a value in a named variable, **a triple uses the index (or position number) of a previous triple to reference its result.**\n\n### Breakdown by Example\nIf you look at the example $a + b * c - d / (b + c)$ provided on **Page 3** and **Page 4**, you can see the difference:\n\n1.  **Implicit Referencing:** When the computer needs the result of a previous calculation, it doesn't look for a variable named $t_1$. It points to the line number where that calculation happened.\n2.  **The \"Pointer\" approach:** On **Page 2**, your notes state: *\"instead when a reference to another triple's value is needed, a pointer to that triple is used.\"* \n\n**Look at the Triples table on Page 4:**\n*   **Line 0:** Performs `+ b c`.\n*   **Line 1:** Performs `+ a b`.\n*   **Line 2:** Performs `- c d`.\n*   **Line 3:** Performs `* 1 2`. Here, instead of using variables, it uses **1** and **2** to point back to the results of the operations in Line 1 and Line 2. \n*   **Line 4:** Performs `/ 3 0`. Again, it uses the indices **3** and **0** to grab the results from those previous lines.\n\n### Summary\n*   **Quadruples:** Use an explicit \"Result\" column to store data in a temporary variable (e.g., $t_1, t_2$).\n*   **Triples:** Use the **row index** as a reference. This saves memory because the compiler doesn't have to manage or allocate space for those extra temporary variable names—it just \"remembers\" where it put the previous result.\n\nThis makes triples more space-efficient, though as your notes mention on page 4, they can be slightly harder to rearrange than quadruples if you need to optimize the code later!",
+    "retrieved_pages": [
+      2,
+      15,
+      4,
+      14,
+      3
+    ],
+    "pages_sent": [
+      2,
+      15,
+      4,
+      14,
+      3
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly explains that triples avoid temporary variables by using pointers or indices to previous triples, which is directly supported by the provided text on Page 2."
+  },
+  {
+    "q": "For the expression a+a*(b-c)+(b-c)*d, what is the final three address instruction?",
+    "answer": "t5 = t3 + t4",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 5,
+    "answerable": true,
+    "secs": 7.9,
+    "hit": true,
+    "answer_given": "To find the final three-address code (TAC) for the expression **$a + a * (b - c) + (b - c) * d$**, we break it down into simple, step-by-step instructions. Each instruction performs a single operation and stores the result in a temporary variable ($t_n$).\n\nBased on the work shown on **Page 5**, here is the breakdown of the instructions:\n\n### Step-by-Step Implementation:\n\n1.  **$t_1 = a + a$**  (This computes the initial part of the expression)\n2.  **$t_2 = b - c$**  (This evaluates the common sub-expression inside the parentheses)\n3.  **$t_3 = t_1 * t_2$** (This computes $a * (b - c)$ using the result from step 2)\n4.  **$t_4 = t_2 * d$**  (This computes $(b - c) * d$ using the result from step 2 again)\n5.  **$t_5 = t_3 + t_4$** (This combines the two results to get the final answer)\n\n***\n\n### Why this is \"Three Address Code\":\nAs explained on **Page 1**, TAC is an intermediate representation where each instruction typically has:\n*   **One operator** (e.g., $+$, $*$, $-$)\n*   **At most two sources** (the variables on the right side of the equals sign)\n*   **A target/result** (the temporary variable on the left)\n\n### Summary Table (Quadruple Format)\nAs shown in the table on **Page 5**, this corresponds to:\n\n| op | arg1 | arg2 | result |\n| :--- | :--- | :--- | :--- |\n| + | a | a | $t_1$ |\n| - | b | c | $t_2$ |\n| * | $t_1$ | $t_2$ | $t_3$ |\n| * | $t_2$ | d | $t_4$ |\n| + | $t_3$ | $t_4$ | $t_5$ |\n\nThis systematic approach makes it much easier for a compiler to optimize the code, especially by identifying the common sub-expression $(b - c)$ and calculating it only once!",
+    "retrieved_pages": [
+      1,
+      5,
+      6,
+      2,
+      4
+    ],
+    "pages_sent": [
+      1,
+      5,
+      6,
+      2,
+      4
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the final three-address instruction as t5 = t3 + t4, which matches the reference answer and is explicitly supported by the provided context on Page 5."
+  },
+  {
+    "q": "Which code generator issue is about choosing the most suitable machine instructions?",
+    "answer": "Instruction selection.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 10,
+    "answerable": true,
+    "secs": 7.93,
+    "hit": true,
+    "answer_given": "Based on your notes, the issue that deals with choosing the most suitable machine instructions is **4. Instruction Selection**.\n\nYou can find the details for this on **Page 10** of your notes. Here is a breakdown of what that entails:\n\n*   **Definition:** Instruction selection is the process of translating the intermediate code into the final executable machine code.\n*   **The Goal:** The primary goal is to ensure the generated code is efficient and appropriate for the specific target machine hardware. \n*   **Why it matters:** As noted on **Page 11**, if the \"wrong\" or less-than-optimal instructions are selected, the resulting code can be slow and inefficient. \n\nYour notes even provide a simple example of this process on **Page 11**:\n*   **Intermediate Code (TAC):** `x = y + z`\n*   **Target Machine Instructions:**\n    *   `MOV y, R0` (Move `y` into register `R0`)\n    *   `ADD z, R0` (Add `z` to the value in `R0`)\n    *   `MOVE R0, x` (Move the final result from `R0` back to `x`)\n\nBy selecting these specific instructions, the compiler ensures the computer performs the task as quickly as possible!",
+    "retrieved_pages": [
+      7,
+      11,
+      10,
+      9,
+      8
+    ],
+    "pages_sent": [
+      7,
+      11,
+      10,
+      9,
+      8
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies 'Instruction Selection' as the process for choosing machine instructions, which is explicitly supported by the text on Page 10 of the retrieved context. The example provided also aligns with the content on Page 11."
+  },
+  {
+    "q": "What are the two stages of register handling in a code generator?",
+    "answer": "Register allocation and register assignment.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 12,
+    "answerable": true,
+    "secs": 7.52,
+    "hit": true,
+    "answer_given": "Based on the notes provided on **Page 11** and **Page 12**, the register handling process is divided into two distinct stages:\n\n1.  **Register Allocation (Page 12):** This is the process of selecting which variables will reside in the registers at any given point in the program.\n2.  **Register Assignment (Page 12):** This is the process of assigning specific, physical registers to the variables that were selected during the allocation stage.\n\n**Why is this important?**\nAs mentioned on Page 11, efficient use of registers is crucial because registers are much faster than main memory. By effectively managing how and where data is stored during execution, the code generator can significantly improve the overall performance of the program.",
+    "retrieved_pages": [
+      7,
+      10,
+      12,
+      11,
+      8
+    ],
+    "pages_sent": [
+      7,
+      10,
+      12,
+      11,
+      8
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the two stages as register allocation and register assignment, which is supported by the provided text on pages 11 and 12."
+  },
+  {
+    "q": "Which peephole optimization removes the second of 'mov R0, a' followed by 'mov a, R0'?",
+    "answer": "Redundant instruction elimination.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 13,
+    "answerable": true,
+    "secs": 7.68,
+    "hit": true,
+    "answer_given": "Based on the notes provided on **Page 13**, the specific peephole optimization technique is called **Redundant Instruction Elimination**.\n\nThis technique works by identifying and removing instructions that are unnecessary. \n\nIn your specific example:\n1. `mov R0, a` (Moves the value of 'a' into register R0)\n2. `mov a, R0` (Moves the value back into 'a' from R0)\n\nSince the value of 'a' is already stored in `R0` after the first instruction, the second instruction is redundant. Therefore, the compiler can safely remove the second instruction, leaving only the first one, because the program's final state remains the same while becoming more efficient.",
+    "retrieved_pages": [
+      13,
+      3,
+      14,
+      6,
+      15
+    ],
+    "pages_sent": [
+      13,
+      3,
+      14,
+      6,
+      15
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the optimization as 'Redundant Instruction Elimination' and provides an explanation consistent with the example provided on Page 13 of the retrieved context."
+  },
+  {
+    "q": "Give the strength reduction example for multiplying by 2.",
+    "answer": "x * 2 can be replaced with x << 1.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 16,
+    "answerable": true,
+    "secs": 7.39,
+    "hit": true,
+    "answer_given": "Based on the notes provided on **Page 16**, the example of **strength reduction** for multiplying by 2 is:\n\nThe operation `r1 := r2 * 2` can be replaced with `r1 := r2 << 1`.\n\n**Why is this done?**\nStrength reduction is an optimization technique where you replace a \"costly\" operation (like multiplication) with a \"cheaper\" one (like a bitwise shift). In most computer architectures, shifting a binary number to the left by one position (`<< 1`) is much faster for the processor to execute than a standard multiplication operation.",
+    "retrieved_pages": [
+      16,
+      15,
+      5,
+      2,
+      4
+    ],
+    "pages_sent": [
+      16,
+      15,
+      5,
+      2,
+      4
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the strength reduction example provided in the retrieved context on page 16 and explains the concept accurately."
+  },
+  {
+    "q": "Which instructions are leaders when building basic blocks?",
+    "answer": "The first instruction, any target of a jump or goto, and any instruction that immediately follows a jump or goto.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 18,
+    "answerable": true,
+    "secs": 9.1,
+    "hit": true,
+    "answer_given": "Based on **Page 18** of your notes, when building basic blocks, there are three specific types of instructions that qualify as \"leaders.\" A leader is any instruction that marks the beginning of a new basic block.\n\nThe instructions that are considered leaders are:\n\n1.  **The very first instruction in the code.**\n2.  **Any instruction that is the target of a \"goto\" or other jump instruction** (this includes both conditional and unconditional jumps).\n3.  **Any instruction that immediately follows a \"goto\" or jump instruction.**\n\n***\n\n**Quick Tip for Construction:**\nOnce you have identified all the \"leaders\" in your code, the rest of the process is straightforward:\n*   Each basic block starts with a leader.\n*   The block includes all instructions from that leader up to, but not including, the next leader in the sequence.\n*   If there are no more leaders, the block simply continues to the end of the program.\n\nPartitioning the code this way is a key step in compiler optimization because it allows you to analyze and transform smaller sections of code independently!",
+    "retrieved_pages": [
+      18,
+      17,
+      16,
+      11,
+      10
+    ],
+    "pages_sent": [
+      18,
+      17,
+      16,
+      11,
+      10
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the three types of leaders as defined in the reference answer and supported by the provided context (pages 17 and 18)."
+  },
+  {
+    "q": "What are the three storage allocation strategies a compiler uses?",
+    "answer": "Static, stack and heap allocation.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 20,
+    "answerable": true,
+    "secs": 6.43,
+    "hit": true,
+    "answer_given": "Based on your notes, a compiler uses **three main strategies** for storage allocation. These strategies determine how and when memory is set aside for a program's variables.\n\nHere is the breakdown of those three strategies:\n\n### 1. Static Storage Allocation\n*   **What it is:** This is the simplest form of memory allocation.\n*   **How it works:** Memory for variables is allocated at **compile-time** (before the program ever runs). This means the size and location of these variables are fixed for the entire duration of the program execution.\n*   *Reference: Page 20*\n\n### 2. Stack Storage Allocation\n*   **What it is:** This strategy is used for the memory allocation of local variables within a function.\n*   **How it works:** \n    *   It operates in a **LIFO (Last-In, First-Out)** manner.\n    *   When a function is called, a new \"activation record\" (or stack frame) is pushed onto the stack to hold its local variables.\n    *   When the function finishes, that stack frame is \"popped off,\" and the memory is automatically released.\n*   **Pros:** Very fast access, automatic management, and simple allocation/deallocation.\n*   **Cons:** The stack has a limited size and cannot handle very large amounts of memory.\n*   *Reference: Pages 22 and 23*\n\n### 3. Heap Storage Allocation\n*   **What it is:** A form of dynamic memory allocation used for data that isn't tied to a specific function's scope.\n*   **How it works:** \n    *   It allows for memory to be allocated at **runtime**, which is useful for data structures that need to grow or shrink while the program is running.\n    *   Unlike the stack, memory in the heap is **not** automatically deallocated when a function ends. You must explicitly free it (e.g., using `free()` or `delete` in C++).\n*   **Pros:** Highly flexible; you can retain variable values even after a function's activation record is gone.\n*   **Cons:** Generally slower than stack allocation, and because you manage it manually, there is a risk of \"memory leaks\" if you forget to release the memory.\n*   *Reference: Pages 23 and 24*\n\n***\n\n**Tutor Tip:** A great way to visualize this is to look at the diagram on **Page 20**. It shows how a program's memory is segmented: the **Stack** sits at the top for local variables, the **Heap** grows dynamically, and the **Data/BSS/Code** sections handle the static and global parts of your program!",
+    "retrieved_pages": [
+      20,
+      19,
+      24,
+      23,
+      22
+    ],
+    "pages_sent": [
+      20,
+      19,
+      24,
+      23,
+      22
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the three storage allocation strategies (Static, Stack, and Heap) and provides accurate details for each, all of which are supported by the provided context pages."
+  },
+  {
+    "q": "In what order is stack memory allocated and freed?",
+    "answer": "LIFO: allocated when a function is called and deallocated when it returns.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 22,
+    "answerable": true,
+    "secs": 4.28,
+    "hit": true,
+    "answer_given": "Based on your notes on **page 22**, stack memory is managed using the **LIFO (Last-In, First-Out)** principle.\n\nHere is the step-by-step breakdown of how that works:\n\n1.  **Allocation:** When a function is called, memory for that function's local variables is allocated on the stack. In the notes, this is referred to as pushing a new \"activation record\" (or \"stack frame\") onto the stack.\n2.  **Freed (Deallocation):** Once the function completes its execution, that specific stack frame is \"popped off.\" This means the memory used by that function is released and becomes available again.\n\nIn short, the last function called is the first one to have its memory freed when it finishes. This makes the stack very efficient for handling nested function calls!",
+    "retrieved_pages": [
+      22,
+      24,
+      23,
+      20,
+      21
+    ],
+    "pages_sent": [
+      22,
+      24,
+      23,
+      20,
+      21
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model answer correctly identifies the LIFO principle and the timing of allocation and deallocation (function call and return), which is fully supported by the provided text on page 22."
+  },
+  {
+    "q": "What are the disadvantages of heap allocation?",
+    "answer": "It is slower than the stack and there is a chance of memory leaks.",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": 24,
+    "answerable": true,
+    "secs": 8.26,
+    "hit": true,
+    "answer_given": "Based on your notes, specifically on **page 24**, there are two main disadvantages of heap memory allocation:\n\n1.  **It is slower than stack allocation:** Because the heap requires manual management (using functions like `malloc()` or `new`) and the memory can be fragmented, it is generally slower for a computer to access and manage compared to the very fast, automatic stack.\n2.  **There is a chance of a memory leak:** Since the programmer is responsible for manually deallocating memory (using `free()` or `delete`) once it is no longer needed, it is easy to accidentally \"forget\" to do so. If you lose track of allocated memory that is no longer being used, that memory remains \"leaked\" and unavailable, which can eventually cause your program to crash or slow down system performance.\n\n**A quick tip for context:**\nAs mentioned on **page 23**, the heap is used for dynamic memory that needs to persist beyond the scope of a single function call. While this makes it much more flexible than stack allocation, that same flexibility puts the responsibility on you (the programmer) to clean up after yourself!",
+    "retrieved_pages": [
+      23,
+      24,
+      11,
+      20,
+      21
+    ],
+    "pages_sent": [
+      23,
+      24,
+      11,
+      20,
+      21
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the two disadvantages mentioned in the reference answer and the retrieved context (page 24). The additional explanations provided by the model are consistent with general programming knowledge and do not contradict the provided context."
+  },
+  {
+    "q": "What does the document say about the time complexity of graph-colouring register allocation?",
+    "answer": "not in document",
+    "source": "New_Doc_10-14-2025_14_57.pdf",
+    "page": null,
+    "answerable": false,
+    "secs": 9.05,
+    "hit": null,
+    "answer_given": "Based on the images provided, there is **no mention** of the time complexity (such as $NP$-completeness) of graph-coloring register allocation.\n\nWhile **Page 11** and **Page 12** discuss register allocation in the context of compiler optimization, the notes define it generally as a two-stage process:\n\n1.  **Register Allocation:** Selecting which variables will reside in registers at each point in the program.\n2.  **Register Assignment:** Assigning specific registers to those selected variables.\n\nThe text on **Page 12** acknowledges that evaluation order is a \"complex problem\" and that it \"may require sophisticated algorithms to find the optimal solution,\" but it does not specifically discuss the algorithmic complexity of the graph-coloring method.",
+    "retrieved_pages": [
+      11,
+      12,
+      3,
+      20,
+      15
+    ],
+    "pages_sent": [
+      11,
+      12,
+      3,
+      20,
+      15
+    ],
+    "mode": "scanned",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that the provided text does not contain information regarding the time complexity of graph-coloring register allocation and accurately summarizes the content that is present in the document."
+  },
+  {
+    "q": "What is the title of the mini project and who submitted it?",
+    "answer": "Web-Based Smart Attendance Calculator, submitted by K. Aanuj Reddy (22R91A05C7).",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": "cover",
+    "answerable": true,
+    "secs": 6.01,
+    "hit": null,
+    "answer_given": "The mini project is titled **\"Web–Based Smart Attendance Calculator\"**. \n\nIt was submitted by **K. AANUJ REDDY (22R91A05C7)**.\n\nThis information can be found on **page 1** of the document.",
+    "retrieved_pages": [
+      4,
+      1,
+      2,
+      3,
+      19
+    ],
+    "pages_sent": [
+      4,
+      1,
+      2,
+      3,
+      19
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified the project title and the student's name and ID, all of which are supported by the provided document pages."
+  },
+  {
+    "q": "Who is the project guide of the mini project?",
+    "answer": "P. Ratna Tejaswi, Assistant Professor, Department of CSE.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": "cover",
+    "answerable": true,
+    "secs": 5.37,
+    "hit": null,
+    "answer_given": "The project guide for the mini project is **P. Ratna Tejaswi** (Assistant Professor).\n\nThis information can be found on **page 1** and **page 2** of the provided document.",
+    "retrieved_pages": [
+      4,
+      19,
+      2,
+      1,
+      7
+    ],
+    "pages_sent": [
+      4,
+      19,
+      2,
+      1,
+      7
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies P. Ratna Tejaswi as the project guide, which is supported by the provided context on pages 1 and 2."
+  },
+  {
+    "q": "What inputs does the attendance calculator take from the user?",
+    "answer": "Total classes, attended classes, target attendance percentage and the number of working days left before exams.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": "abstract",
+    "answerable": true,
+    "secs": 30.81,
+    "hit": null,
+    "answer_given": "Hello! As an expert tutor, I am happy to help you understand the data requirements for the Smart Attendance Calculator based on the document provided.\n\nAccording to the project documentation, the calculator requires the user to input four specific pieces of information to generate attendance insights. These can be found on **page 5** and **page 27**:\n\n1.  **Total Classes:** The total number of classes conducted so far.\n2.  **Attended Classes:** The number of classes the student has actually attended.\n3.  **Target Attendance (%):** The attendance percentage the student aims to achieve or maintain (e.g., 75% or 85%).\n4.  **Working Days Left:** The number of working days remaining until exams.\n\nOnce these values are entered into the system, the calculator uses them to determine if a student needs to attend all remaining classes or if they can afford to miss some while still meeting their target percentage. \n\nI hope this helps you understand how the tool functions! Let me know if you have any other questions.",
+    "retrieved_pages": [
+      9,
+      42,
+      5,
+      27,
+      39
+    ],
+    "pages_sent": [
+      9,
+      42,
+      5,
+      27,
+      39
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the four required inputs (Total Classes, Attended Classes, Target Attendance, and Working Days Left) which are explicitly listed in the provided context on page 5 and page 27."
+  },
+  {
+    "q": "Which backend framework and database does the attendance system use?",
+    "answer": "Node.js with Express.js for the backend and SQLite for the database.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 3,
+    "answerable": true,
+    "secs": 3.49,
+    "hit": null,
+    "answer_given": "Based on the document provided, the attendance system uses the following backend framework and database:\n\n*   **Backend Framework:** It utilizes **Node.js with Express** (Page 11).\n*   **Database:** It uses **SQLite** for lightweight, persistent database storage (Page 11).\n\nThe document notes that SQLite was chosen because it allows for easy deployment without the need for complex server configurations while still providing full SQL capabilities.",
+    "retrieved_pages": [
+      11,
+      9,
+      10,
+      42,
+      5
+    ],
+    "pages_sent": [
+      11,
+      9,
+      10,
+      42,
+      5
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies Node.js with Express as the backend framework and SQLite as the database, which is explicitly stated on page 11 of the provided context."
+  },
+  {
+    "q": "What architecture does the attendance system follow?",
+    "answer": "A three-tier architecture: presentation tier, application tier (server) and data tier (database).",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 7,
+    "answerable": true,
+    "secs": 6.86,
+    "hit": null,
+    "answer_given": "The attendance management system follows a **three-tier architecture**. \n\nAccording to page 11 of the document, this structure is used to separate the presentation, logic, and data storage layers, which helps improve the system's modularity and maintainability.",
+    "retrieved_pages": [
+      10,
+      9,
+      12,
+      11,
+      5
+    ],
+    "pages_sent": [
+      10,
+      9,
+      12,
+      11,
+      5
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that the system follows a three-tier architecture, which is explicitly stated on page 11 of the provided text."
+  },
+  {
+    "q": "What information does the SQLite database store for each student?",
+    "answer": "Student ID, name, classes attended and total classes.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 15,
+    "answerable": true,
+    "secs": 8.72,
+    "hit": null,
+    "answer_given": "Based on the provided document, the SQLite database stores the following information for each student:\n\n*   **Student ID:** A unique identifier for the student (Page 11, Page 35).\n*   **Name:** The name of the student (Page 11, Page 35).\n*   **Classes Attended:** The number of classes the student has attended (Page 11, Page 35).\n*   **Total Classes:** The total number of classes conducted (Page 11, Page 35).\n\nAdditionally, the database uses an `id` field as a primary key (Page 35).",
+    "retrieved_pages": [
+      22,
+      11,
+      34,
+      35,
+      29
+    ],
+    "pages_sent": [
+      22,
+      11,
+      34,
+      35,
+      29
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the four pieces of information stored in the database (Student ID, Name, Classes Attended, Total Classes) as supported by pages 11, 22, and 35 of the provided context."
+  },
+  {
+    "q": "How does the admin mark attendance and what gets updated when it is saved?",
+    "answer": "By ticking checkboxes next to each student; saving updates classes_attended and total_classes in the database.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 17,
+    "answerable": true,
+    "secs": 2.83,
+    "hit": null,
+    "answer_given": "Based on the document provided, here is how the admin marks attendance and what occurs when the data is saved:\n\n### How the Admin Marks Attendance\n*   **Interface:** The admin logs into the dashboard and is presented with a list of all students (Page 24, Page 30).\n*   **Selection:** The admin uses checkboxes provided next to each student’s name to mark them as either present or absent (Page 14, Page 24).\n*   **Submission:** Once the checkboxes are selected, the admin triggers the `saveAttendance()` function, which gathers the data and sends it to the server via a POST request to the `/update-attendance` endpoint (Page 31).\n\n### What Gets Updated\nWhen the attendance is submitted, the system performs two specific updates in the database:\n\n1.  **Total Classes:** The `total_classes` count is incremented by one for **all** students in the database (Page 34).\n2.  **Classes Attended:** For the students who were specifically marked as \"present\" (checked), the `classes_attended` count is incremented by one (Page 34).\n\nThese updates ensure that the database accurately reflects the new attendance records after each session (Page 24).",
+    "retrieved_pages": [
+      34,
+      24,
+      31,
+      8,
+      14
+    ],
+    "pages_sent": [
+      34,
+      24,
+      31,
+      8,
+      14
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that the admin uses checkboxes to mark attendance and that saving updates both total_classes and classes_attended in the database, which is supported by the provided context."
+  },
+  {
+    "q": "What are the disadvantages of the existing attendance system?",
+    "answer": "Human errors, manual effort and limited scenario analysis.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 4,
+    "answerable": true,
+    "secs": 6.0,
+    "hit": null,
+    "answer_given": "Based on the provided document, the disadvantages of the existing (traditional) attendance management systems include:\n\n*   **Human Errors:** The reliance on manual methods makes the system prone to mistakes (Page 12).\n*   **Manual Effort:** These systems require a significant amount of manual labor to enter or update records (Page 10, Page 12).\n*   **Limited Scenario Analysis:** There is a lack of tools available for students to simulate attendance scenarios (Page 12).\n*   **Data Vulnerabilities:** Existing manual methods, such as paper registers or spreadsheets, are often subject to data loss and manipulation (Page 10).\n*   **Time-Consuming:** The process of manually entering or updating records is inefficient and takes up a lot of time (Page 10).\n*   **Lack of Transparency and Interactivity:** Most current systems are \"admin-centric,\" meaning they fail to provide students with real-time visibility into their own attendance status or predictive insights regarding their eligibility (Page 10).\n*   **Inefficiency:** Overall, traditional methods are described as having several general inefficiencies compared to the proposed automated and digital solutions (Page 10, Page 12).",
+    "retrieved_pages": [
+      12,
+      10,
+      31,
+      43,
+      44
+    ],
+    "pages_sent": [
+      12,
+      10,
+      31,
+      43,
+      44
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the three key disadvantages mentioned in the reference answer and provides additional relevant details supported by the provided text, such as data vulnerabilities, time-consuming nature, and lack of transparency."
+  },
+  {
+    "q": "Which UML diagrams are included in the mini project report?",
+    "answer": "Class diagram, use case diagram, activity diagram and sequence diagram.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": "9-12",
+    "answerable": true,
+    "secs": 5.18,
+    "hit": null,
+    "answer_given": "Based on the document provided, the mini project report includes the following UML diagrams:\n\n*   **Class Diagram:** Represented in the Table of Contents on **page 7** and detailed on **page 17**.\n*   **Use case Diagram:** Listed in the Table of Contents on **page 7** and noted in the List of Figures on **page 6**.\n*   **Activity Diagram:** Listed in the Table of Contents on **page 7** and noted in the List of Figures on **page 6**.\n*   **Sequence Diagram:** Listed in the Table of Contents on **page 7** and noted in the List of Figures on **page 6**.\n\nAdditionally, **page 16** provides descriptions of these diagrams and mentions that they are used as part of the overall system design and documentation process.",
+    "retrieved_pages": [
+      16,
+      15,
+      7,
+      6,
+      17
+    ],
+    "pages_sent": [
+      16,
+      15,
+      7,
+      6,
+      17
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model answer correctly identifies the four UML diagrams listed in the Table of Contents on page 7 of the provided document. The references to page numbers for the diagrams in the Table of Contents and List of Figures are supported by the provided text."
+  },
+  {
+    "q": "On which operating system was the system developed and tested?",
+    "answer": "Windows 11.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 16,
+    "answerable": true,
+    "secs": 5.87,
+    "hit": null,
+    "answer_given": "According to the document provided, the system was developed and tested on **Windows 11** (Page 23).",
+    "retrieved_pages": [
+      13,
+      7,
+      23,
+      22,
+      4
+    ],
+    "pages_sent": [
+      13,
+      7,
+      23,
+      22,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The retrieved context on page 23 explicitly states that the system was developed and tested on Windows 11."
+  },
+  {
+    "q": "For Student 1 (298 total, 202 attended, 10 days left, target 75%), what maximum attendance can be reached?",
+    "answer": "73.18%, so 75% is impossible.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 32,
+    "answerable": true,
+    "note": "answer is inside a screenshot (vision path)",
+    "secs": 9.05,
+    "hit": null,
+    "answer_given": "Based on the document provided, for Student 1 (with 298 total classes, 202 attended, 10 days left, and a target of 75%), it is **impossible** to reach 75.00% attendance.\n\nAccording to **page 40**, the maximum attendance that Student 1 would be able to reach is **73.18%**.",
+    "retrieved_pages": [
+      40,
+      39,
+      41,
+      38,
+      27
+    ],
+    "pages_sent": [
+      40,
+      39,
+      41,
+      38,
+      27
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that 75% attendance is impossible and cites the maximum reachable attendance as 73.18%, which is explicitly stated in the provided context on page 40."
+  },
+  {
+    "q": "For Student 2 (298 total, 232 attended, target 75%), how many more classes can be missed?",
+    "answer": "11 more classes while still maintaining 75.00% attendance.",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "printed_page": 33,
+    "answerable": true,
+    "note": "answer is inside a screenshot (vision path)",
+    "secs": 3.38,
+    "hit": null,
+    "answer_given": "Hello! I'd be happy to help you with that calculation based on the document provided.\n\nAccording to **page 41**, for Student 2 (who has 298 total classes and 232 classes attended), you can miss **11 more classes** and still maintain a 75.00% attendance rate.",
+    "retrieved_pages": [
+      41,
+      40,
+      39,
+      38,
+      27
+    ],
+    "pages_sent": [
+      41,
+      40,
+      39,
+      38,
+      27
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the number of classes that can be missed (11) and cites the correct page (41) from the provided context."
+  },
+  {
+    "q": "How many users took part in a pilot test of the attendance calculator?",
+    "answer": "not in document",
+    "source": "MINI_doc_aanuj.pdf",
+    "page": null,
+    "answerable": false,
+    "secs": 5.79,
+    "hit": null,
+    "answer_given": "Based on the document provided, there is no mention of a \"pilot test\" or a specific number of users who participated in one. \n\nThe document does, however, display examples of two individual student accounts:\n* **Student 1 (ID: S001)** is featured on **page 39**.\n* **Student 2 (ID: S002)** is featured on **page 41**. \n\nThese appear to be examples of the system's functionality rather than a report on a pilot test group.",
+    "retrieved_pages": [
+      9,
+      39,
+      41,
+      5,
+      42
+    ],
+    "pages_sent": [
+      9,
+      39,
+      41,
+      5,
+      42
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that the document does not contain information about a pilot test and provides context from the document to explain what the student examples actually represent."
+  },
+  {
+    "q": "Who are the authors of the FinShield paper and in which journal was it published?",
+    "answer": "P Ratna Tejaswi, K Aanuj Reddy, G Eesha and J Nagalaxmi; Global Journal of Engineering Innovations & Interdisciplinary Research (GJEIIR).",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 5.44,
+    "hit": true,
+    "answer_given": "The paper titled \"FinShield: Explainable Graph Neural Network Approach to Money Laundering Detection in Digital Social Transactions\" lists the following authors:\n\n*   **P. Ratna Tejaswi**\n*   **K. Aanuj Reddy**\n*   **G. Eesha**\n*   **J. Nagalaxmi**\n\nIt was published in the **Global Journal of Engineering Innovations & Interdisciplinary Research (GJEIIR)**.\n\n(Source: Page 1 of the document)",
+    "retrieved_pages": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the four authors (P. Ratna Tejaswi, K. Aanuj Reddy, G. Eesha, and J. Nagalaxmi) and the journal (Global Journal of Engineering Innovations & Interdisciplinary Research) as stated in the provided document."
+  },
+  {
+    "q": "What were the received, accepted and publication dates of the FinShield paper?",
+    "answer": "Received 08 Jan 2026, accepted 20 Jan 2026, published 09 Feb 2026.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 4.99,
+    "hit": true,
+    "answer_given": "According to the article information on **page 1**, the key dates for the FinShield paper are:\n\n*   **Received Date:** 08 Jan 2026\n*   **Accepted Date:** 20 Jan 2026\n*   **Publication Date:** 09 Feb 2026",
+    "retrieved_pages": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified the received, accepted, and publication dates as stated on page 1 of the provided context."
+  },
+  {
+    "q": "What detection accuracy did FinShield achieve?",
+    "answer": "95%.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 5.33,
+    "hit": true,
+    "answer_given": "FinShield achieved a detection accuracy of **95%**.\n\nThis information can be found on **page 3** in the \"Conclusion\" section and on **page 1** in the \"Abstract.\" Additionally, **page 2** provides a detailed performance comparison in Table 1, confirming this 95% accuracy rate for the GNN (FinShield) model.",
+    "retrieved_pages": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that FinShield achieved 95% accuracy. This figure is explicitly mentioned in the Abstract (page 1), Table 1 (page 2), and the Conclusion (page 3) of the provided text."
+  },
+  {
+    "q": "What size dataset was FinShield evaluated on?",
+    "answer": "A simulated dataset of 50,000 transactions and 5,000 users, with 8% labeled laundering cases.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 5.06,
+    "hit": true,
+    "answer_given": "FinShield was evaluated on a simulated social transaction dataset that included **50,000 transactions and 5,000 users** (Page 2).",
+    "retrieved_pages": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified the dataset size (50,000 transactions and 5,000 users) as stated in the 'Results' section on page 2 of the provided context."
+  },
+  {
+    "q": "Which network metrics are extracted from the user-transaction graph?",
+    "answer": "Degree centrality, clustering coefficient, PageRank and transaction velocity.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 5.56,
+    "hit": true,
+    "answer_given": "According to the document, the system extracts the following network metrics from the User-Transaction Graph to identify abnormal connectivity patterns:\n\n*   **Degree centrality**\n*   **Clustering coefficient**\n*   **PageRank**\n*   **Transaction velocity**\n\nThis information can be found on **page 2**.",
+    "retrieved_pages": [
+      2,
+      1,
+      3,
+      4,
+      3
+    ],
+    "pages_sent": [
+      2,
+      1,
+      3,
+      4,
+      3
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies the four network metrics (degree centrality, clustering coefficient, PageRank, and transaction velocity) mentioned in the retrieved context on page 2."
+  },
+  {
+    "q": "What does the detection engine output and when is an alert triggered?",
+    "answer": "A risk score per user and transaction; an alert is triggered when the score exceeds a predefined threshold.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 5.6,
+    "hit": true,
+    "answer_given": "The detection engine outputs a **risk score** that is assigned to each user and each transaction (Page 2).\n\nAn alert is triggered for further investigation **if the risk score exceeds a predefined threshold** (Page 2). \n\nAs noted in the document, this threshold can be adjusted dynamically by financial institutions to find the right balance between detection sensitivity and the number of false positives (Page 2).",
+    "retrieved_pages": [
+      2,
+      3,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      2,
+      3,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model accurately identifies that the detection engine outputs a risk score for users and transactions and that an alert is triggered when this score exceeds a predefined threshold, both of which are explicitly stated in the provided text."
+  },
+  {
+    "q": "What are the F1-scores of Random Forest and the GNN (FinShield)?",
+    "answer": "Random Forest 0.86 and GNN (FinShield) 0.92.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 5.15,
+    "hit": true,
+    "answer_given": "Based on the \"Model Performance Comparison\" table on page 2, the F1-scores are as follows:\n\n*   **Random Forest:** 0.86\n*   **GNN (FinShield):** 0.92",
+    "retrieved_pages": [
+      2,
+      3,
+      1,
+      4,
+      3
+    ],
+    "pages_sent": [
+      2,
+      3,
+      1,
+      4,
+      3
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified the F1-scores for Random Forest (0.86) and GNN (FinShield) (0.92) as listed in Table 1 on page 2 of the provided context."
+  },
+  {
+    "q": "At a risk threshold of 0.6, what are the false positive rate and detection rate?",
+    "answer": "False positive rate 0.12 and detection rate 0.91.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 5.78,
+    "hit": true,
+    "answer_given": "According to the \"System Risk Analysis\" table (Table 2) on **page 2** of the document, at a risk threshold of **0.6**, the system metrics are as follows:\n\n*   **False Positive Rate:** 0.12\n*   **Detection Rate:** 0.91",
+    "retrieved_pages": [
+      2,
+      3,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      2,
+      3,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified the false positive rate (0.12) and detection rate (0.91) for a risk threshold of 0.6, as specified in Table 2 of the provided document."
+  },
+  {
+    "q": "What happens to false positives as the risk threshold increases?",
+    "answer": "False positives decrease (from 0.25 at 0.2 to 0.05 at 1.0), while the detection rate also falls.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 2,
+    "answerable": true,
+    "secs": 4.82,
+    "hit": true,
+    "answer_given": "Based on the document provided, as the risk threshold increases, the false positive rate decreases.\n\nThis information is detailed in **page 2**, specifically in \"Table 2: System Risk Analysis.\" The table illustrates that as the threshold moves from 0.2 up to 1.0, the false positive rate drops from 0.25 down to 0.05. \n\nThe text on **page 2** also notes that this allows financial institutions to \"dynamically adjust\" the threshold to optimize detection sensitivity and balance it against the rate of false positives.",
+    "retrieved_pages": [
+      2,
+      3,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      2,
+      3,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identifies that increasing the risk threshold reduces the false positive rate, citing the specific data from Table 2 in the provided document."
+  },
+  {
+    "q": "What limitation is listed for Kipf & Welling's Graph Convolutional Networks?",
+    "answer": "Requires structured graph input.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 1,
+    "answerable": true,
+    "secs": 5.13,
+    "hit": true,
+    "answer_given": "According to the literature survey table on page 1, the limitation listed for Kipf & Welling (2017) regarding their Graph Convolutional Networks is that it **\"requires structured graph input.\"**",
+    "retrieved_pages": [
+      2,
+      4,
+      3,
+      3,
+      1
+    ],
+    "pages_sent": [
+      2,
+      4,
+      3,
+      3,
+      1
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The retrieved context contains a literature survey table on page 1 that explicitly lists 'Requires structured graph input' as the limitation for Kipf & Welling (2017)."
+  },
+  {
+    "q": "What future enhancements does the FinShield paper propose?",
+    "answer": "Real-time streaming analysis, federated learning for privacy-preserving AML, and integration with blockchain-based financial platforms.",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": 3,
+    "answerable": true,
+    "secs": 2.7,
+    "hit": true,
+    "answer_given": "According to the \"Conclusion\" section on **page 3** of the document, the authors suggest the following future enhancements for FinShield:\n\n*   **Real-time streaming analysis:** Implementing the ability to process and analyze data as it flows in real-time.\n*   **Federated learning:** Incorporating this technique to enable privacy-preserving Anti-Money Laundering (AML) monitoring.\n*   **Blockchain integration:** Integrating the tool with blockchain-based financial platforms.",
+    "retrieved_pages": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "pages_sent": [
+      3,
+      2,
+      1,
+      3,
+      4
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The model correctly identified the three future enhancements mentioned in the 'Conclusion' section of the provided text and accurately attributed them to the paper."
+  },
+  {
+    "q": "How many GPUs were used to train the FinShield GNN?",
+    "answer": "not in document",
+    "source": "Major_pro_Arcticle.pdf",
+    "page": null,
+    "answerable": false,
+    "secs": 5.6,
+    "hit": null,
+    "answer_given": "Based on the document provided, there is no mention of the number of GPUs used to train the FinShield GNN model. \n\nThe paper describes the model's architecture, the methodology (using a User-Transaction Graph and GNN), and the performance metrics, but it does not specify the hardware specifications or the compute resources utilized for training (Page 2).",
+    "retrieved_pages": [
+      2,
+      3,
+      1,
+      4,
+      3
+    ],
+    "pages_sent": [
+      2,
+      3,
+      1,
+      4,
+      3
+    ],
+    "mode": "digital",
+    "correct": true,
+    "grounded": true,
+    "reason": "The document does not contain information regarding the hardware specifications or the number of GPUs used to train the FinShield GNN, and the model correctly identifies this absence."
+  }
+]
