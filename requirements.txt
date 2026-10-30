@@ -6,3 +6,4 @@ Pillow>=11.0.0,<12.0.0
 pymupdf>=1.24.13
 fastembed>=0.7.4
 numpy>=1.26.4
+boto3>=1.34.0

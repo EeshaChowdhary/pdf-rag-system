@@ -1,3 +1,4 @@
+from s3_storage import save_pdf
 import streamlit as st
 import os
 from dotenv import load_dotenv
@@ -187,6 +188,10 @@ with st.sidebar:
                 st.session_state.chunks       = chunks
                 st.session_state.chunk_rows   = chunk_rows
                 st.session_state.transcripts  = {}
+                try:
+                    save_pdf(uploaded_file.name, uploaded_file.getvalue())
+                except Exception as e:
+                    st.warning(f"Could not save to S3: {e}")
 
             if st.session_state.chunk_rows:
                 with st.spinner("Indexing document for retrieval..."):
@@ -430,4 +435,4 @@ else:
                         st.session_state.summary = summary
                         st.rerun()
                     except Exception as e:
-                        st.error(f"Error: {str(e)}")
+                        st.error(f"Error: {str(e)}")                        
