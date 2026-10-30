@@ -20,7 +20,6 @@ Gold evaluation answers are never sent to answer generation. The judge sees a re
 ## Setup
 
 ```bash
-git clone https://github.com/EeshaChowdhary/pdf-rag-system.git
 cd pdf-rag-system
 python -m venv .venv
 .venv\Scripts\activate
@@ -45,6 +44,34 @@ Example questions after uploading a PDF:
 - What storage allocation strategies does the document describe?
 - What is on page 12?
 - Is the pilot-test size stated in this document?
+
+## Docker
+
+```bash
+docker build -t pdf-rag-system .
+docker run -p 8501:8501 --env-file .env pdf-rag-system
+```
+
+Open http://localhost:8501. The `.env` file is kept out of the image by `.dockerignore`.
+
+## AWS deployment
+
+The app was deployed on AWS as a learning project.
+
+- **EC2** (t3.small, Amazon Linux 2023) runs the Docker container.
+- **S3** stores uploaded PDFs under `uploads/`. Set the `S3_BUCKET` and `AWS_REGION` environment variables to turn it on. If `S3_BUCKET` is not set, the app works exactly as before.
+- **IAM role** attached to the instance gives it access to one bucket, with only `PutObject`, `GetObject`, and `ListBucket`. No AWS keys are stored on the server or in the repo.
+- **Security group** allows SSH and port 8501 from a single IP address only.
+
+![App running on EC2](images/app-on-ec2.png)
+![EC2 instance with IAM role](images/ec2-instance.png)
+![Uploaded PDF in S3](images/s3-bucket.png)
+
+Known limits:
+
+- The app saves uploads to S3 but does not load them back from S3.
+- It is served over plain HTTP on one instance, with no HTTPS or load balancer.
+- It was a short test deployment, and the AWS resources have since been shut down.
 
 ## External search
 
